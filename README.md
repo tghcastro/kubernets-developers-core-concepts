@@ -20,3 +20,17 @@ Content from Pluralsigh's course "Kubernetes for Developers: Core Concepts"
 
     kubectl delete deployment [deployment-name]
 
+### Examples (alias 'kb'):
+
+    kb run firstpod --image=nginx:alpine
+
+    kb get pod firstpod-6f6b4567c4-4tk8d
+
+    kb port-forward firstpod-6f6b4567c4-4tk8d 8080:80
+
+    kb delete pod firstpod-6f6b4567c4-4tk8d
+
+    kb delete deployment firstpod
+
+
+
