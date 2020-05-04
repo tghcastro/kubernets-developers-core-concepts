@@ -4,7 +4,7 @@
 
 Content from Pluralsigh's course "Kubernetes for Developers: Core Concepts"
 
-### Types of Probe:
+### Types of Probe
 
 Readiness Probe: When should a container start receiving traffic?
 
@@ -17,7 +17,14 @@ Liveness Probe: When should a container restart?
 3. Canary deployments
 4. Rollbacks
 
-## Commands:
+### Services Types
+
+1. ClusterIP: Expose the service on a cluster-internal IP (default)
+2. NodePort: Expose the service on each Node's IP at a static port
+3. LoadBalancer: Provisioin an external IP to act as load balancer for the service
+4. ExternalName: Maps a service to a DNS name
+
+## Commands (kubectl)
 
     kubectl get all # Lists Pods and Deployments
 
@@ -27,7 +34,7 @@ Liveness Probe: When should a container restart?
 
     kubectl get pod [pod-name]
 
-    kubectl port-forward [pod-name] [external-port]:[internal-port]
+    kubectl port-forward [pod-name | deployment-name | service-name] [external-port]:[internal-port]
 
     kubectl delete pod [pod-name]  #recreates the Pod
 
@@ -55,7 +62,9 @@ Liveness Probe: When should a container restart?
 
     kubectl scale -f [yml-file] --replicas=5
 
-### Examples (alias 'kb'):
+    kubectl get services
+
+### Examples (alias 'kb')
 
     kb run firstpod --image=nginx:alpine
 
@@ -83,6 +92,12 @@ Liveness Probe: When should a container restart?
 
     kb scale -f nginx.deployment.yml --replicas=4
 
+    kb get services
+
+## Another Commands (linux)
+
+    # Install and use curl (Alpine Linux)
+    apk add curl
 
 
 

@@ -1,0 +1,13 @@
+# Needs to run first /kubernets-developers-core-concepts/nginx.deployment.yml
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: nginx-clusterip
+spec:
+    type: ClusterIP
+    selector:
+        app: my-nginx
+    ports:
+    - port: 8080
+      targetPort: 80

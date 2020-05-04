@@ -5,6 +5,8 @@ metadata:
   labels:
     app: my-nginx
 spec:
+  replicas: 3
+  minReadySeconds: 10
   selector:
     matchLabels:
       app: my-nginx
@@ -13,8 +15,6 @@ spec:
       labels:
         app: my-nginx
     spec:
-      replicas: 3
-      minReadySeconds: 10
       containers:
         - name: my-nginx
           image: nginx:alpine
