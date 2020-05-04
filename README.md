@@ -10,6 +10,13 @@ Readiness Probe: When should a container start receiving traffic?
 
 Liveness Probe: When should a container restart?
 
+### Deployment Options (zero downtime deployments)
+
+1. Rolling updates: Create one and then remove one till the end
+2. Blue-green deployments
+3. Canary deployments
+4. Rollbacks
+
 ## Commands:
 
     kubectl get all # Lists Pods and Deployments
