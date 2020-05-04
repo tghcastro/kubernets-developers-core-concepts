@@ -24,8 +24,6 @@ Liveness Probe: When should a container restart?
 
     kubectl delete pod [pod-name]  #recreates the Pod
 
-    kubectl delete deployment [deployment-name]
-
     kubectl create -f [yml-file]
 
     kubectl create -f [yml-file] --dry-run --validate=true # Perform a "trial" create and also validate the YAML
@@ -34,9 +32,21 @@ Liveness Probe: When should a container restart?
 
     kubectl delete -f [yml-file]
 
-    kubectl describe pod [pod-name]
+    kubectl describe [pod | deployment] [pod-name | deployment-name]
 
     kubectl exec [pod-name] -it sh # Enter into the Pod's container
+
+    kubectl get deployments
+
+    kubectl get deployment --show-labels
+
+    kubectl get deployment -l app=nginx
+
+    kubectl delete deployment [deployment-name]
+
+    kubectl delete deployment -f [yml-file]
+
+    kubectl scale -f [yml-file] --replicas=5
 
 ### Examples (alias 'kb'):
 
@@ -57,3 +67,16 @@ Liveness Probe: When should a container restart?
     kb describe pod my-nginx
 
     kb exec my-nginx -it sh
+
+    kb create -f nginx.deployment.yml --save-config
+
+    kb get deployments -l app=my-nginx
+
+    kb get deployments --show-labels
+
+    kb scale -f nginx.deployment.yml --replicas=4
+
+
+
+
+
