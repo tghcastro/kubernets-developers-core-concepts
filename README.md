@@ -24,8 +24,26 @@ Liveness Probe: When should a container restart?
 3. LoadBalancer: Provisioin an external IP to act as load balancer for the service
 4. ExternalName: Maps a service to a DNS name
 
+### Secrets
+
+All secrete data in YAML files should be in BASE64, so it is not really a "secret"!
+
+e.g: Secret YAML
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+    name: db-passwords
+type: Opaque
+daat:
+    app-password: cGFzc3dvcmQ=
+    admin-password: dmVyeV9zZWNyZXQ=
+```
+
 ## Commands (kubectl)
 
+```shell
     kubectl get all # Lists Pods and Deployments
 
     kubectl get pods
@@ -64,12 +82,24 @@ Liveness Probe: When should a container restart?
 
     kubectl get services
 
-    kubectl create cm app-settings --from-env-file=settings.config
+    kubectl create configMap app-settings --from-env-file=settings.config
 
-    kb get cm [configurationMap-name] -o yaml
+    kubectl get configMap [configurationMap-name] -o [yml/json]
+
+    kubectl create secret generic [secret-name] --from-literal=pwd=my-password
+
+    kubectl create secret generic [secret-name] --from-file=ssh-privatekey=[path/to/privatekey] --from-file=ssh-publickey=[path/to/publickey]
+
+    kubectl create secret tls tls-secret --cert=[path/to/tls.cert]
+
+    kubectl get secrets
+
+    kubectl get secrets [secret-name] -o [yml/json]
+```
 
 ### Examples (alias 'kb')
 
+```shell
     kb run firstpod --image=nginx:alpine
 
     kb get pod firstpod-6f6b4567c4-4tk8d
@@ -101,12 +131,11 @@ Liveness Probe: When should a container restart?
     kb create cm app-settings --from-env-file=settings.config
 
     kb get cm app-settings -o yaml
+```
 
 ## Another Commands (linux)
 
+```shell
     # Install and use curl (Alpine Linux)
     apk add curl
-
-
-
-
+```
