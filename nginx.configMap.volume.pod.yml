@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-nginx
+  labels:
+    app: nginx
+    rel: stable
+spec:
+  containers:
+  - name: my-nginx
+    image: nginx:alpine
+    ports:
+    - containerPort: 80
+
+    # Reference ConfigMap data at appropriate path (/etc/config)
+    volumeMounts:
+      - name: app-config-vol
+        mountPath: /etc/config
+
+    # Map env variable data to a ConfigMap property
+    # env:
+    # - name: SOMEKEY
+    #   valueFrom:
+    #     configMapKeyRef:
+    #       name: app-settings
+    #       key: somekey
+
+    # Load all ConfigMap keys/values into environment variables
+    envFrom:
+    - configMapRef:
+        name: app-settings
+
+  # Define a volume that will contains ConfigMap data
+  volumes:
+  - name: app-config-vol
+    configMap:
+      name: app-settings

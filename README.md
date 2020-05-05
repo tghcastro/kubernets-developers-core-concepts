@@ -2,7 +2,7 @@
 
 ## About
 
-Content from Pluralsigh's course "Kubernetes for Developers: Core Concepts"
+Content from Pluralsigh's course "Kubernetes for Developers: Core Concepts" and [Kubernetes's GitHub](https://github.com/kubernetes/examples)
 
 ### Types of Probe
 
@@ -64,6 +64,10 @@ Liveness Probe: When should a container restart?
 
     kubectl get services
 
+    kubectl create cm app-settings --from-env-file=settings.config
+
+    kb get cm [configurationMap-name] -o yaml
+
 ### Examples (alias 'kb')
 
     kb run firstpod --image=nginx:alpine
@@ -93,6 +97,10 @@ Liveness Probe: When should a container restart?
     kb scale -f nginx.deployment.yml --replicas=4
 
     kb get services
+
+    kb create cm app-settings --from-env-file=settings.config
+
+    kb get cm app-settings -o yaml
 
 ## Another Commands (linux)
 
